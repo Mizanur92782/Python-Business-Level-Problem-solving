@@ -1,180 +1,299 @@
-Progressive Learning Path
+# Level 1 (Intermediate → Industry-Oriented)
 
-Generate exercises in increasing difficulty.
+# Problem: Subscription Billing and Invoice Management System
 
-Level 1 – Intermediate
+## Business Context
 
-Single-domain systems with moderate business rules.
-
-Examples:
-
-Insurance premium calculator
-Restaurant order management
-Employee payroll engine
-Subscription billing system
-Level 2 – Advanced
-
-Systems involving multiple subsystems and richer workflows.
-
-Examples:
-
-Airline reservation system
-Warehouse fulfillment platform
-Ride-sharing fare engine
-Claims processing system
-Level 3 – Enterprise
-
-Large-scale systems resembling those built in major companies.
-
-Examples:
-
-Payment gateway processing platform
-Multi-vendor e-commerce marketplace
-Trading and order execution engine
-Telecom billing platform
-Fraud detection workflow engine
-Additional Instructions
-Focus on software engineering rather than algorithm puzzles.
-Prioritize realistic business requirements over artificial complexity.
-Encourage clean architecture and SOLID principles.
-Assume Python 3.12+.
-Favor readability and maintainability over clever code.
-Challenge my design decisions during reviews as a senior engineer would.
-Increase complexity gradually based on my demonstrated ability.
-Keep each exercise difficult enough that implementation may require several hundred lines of code.
-
-My goal is to develop the software design, architectural thinking, and implementation skills expected of engineers building production systems in top technology companies.
-
-I would also add one final instruction because it changes the quality of the exercises dramatically:
-
-Do not optimize the exercises for interview preparation. Optimize them for real software engineering work, where requirements evolve, trade-offs matter, and maintainability is often more important than achieving the shortest implementation.
-
-This transforms the experience from "advanced coding practice" into a simulated apprenticeship with a senior engineer reviewing production-quality systems.
-
-Level 1 (Intermediate → Industry-Oriented)
-Problem: Subscription Billing and Invoice Management System
-Business Context
-
-You work for a SaaS company called CloudTask, which sells project management software.
+You work for a SaaS company called **CloudTask**, which sells project management software.
 
 Customers subscribe to different plans, and every month the company must generate invoices. The billing department currently does this manually using spreadsheets, which has become error-prone as the customer base grows.
 
 Your task is to build a billing engine that automates subscription charging.
 
-The system should be designed using OOP and should be maintainable because the business expects new subscription plans and discount rules in the future.
+The system should be designed using **Object-Oriented Programming (OOP)** principles and should be maintainable because the business expects new subscription plans and discount rules in the future.
 
-Problem Statement
+---
+
+# Problem Statement
 
 CloudTask offers three subscription plans:
 
-Plan Monthly Fee Included Users
-Basic $20 3
-Professional $50 10
-Enterprise $100 20
+| Plan | Monthly Fee | Included Users |
+|--------|------------|----------------|
+| Basic | $20 | 3 |
+| Professional | $50 | 10 |
+| Enterprise | $100 | 20 |
 
-Additional users cost:
+## Additional User Charges
 
-Basic: $8 per extra user
-Professional: $6 per extra user
-Enterprise: $5 per extra user
-Discounts
+| Plan | Cost Per Extra User |
+|--------|--------------------|
+| Basic | $8 |
+| Professional | $6 |
+| Enterprise | $5 |
+
+---
+
+# Discounts
 
 Customers may receive discounts:
 
-Startup Discount
-15% off total bill.
-Nonprofit Discount
-20% off total bill.
-Only one discount can be applied.
-If multiple discounts exist, apply the highest one.
-Taxes
+### Startup Discount
+- 15% off total bill.
 
-Tax rules depend on customer country:
+### Nonprofit Discount
+- 20% off total bill.
 
-Country Tax Rate
-USA 8%
-UK 20%
-Germany 19%
-Others 0%
+### Discount Rule
+- Only one discount can be applied.
+- If multiple discounts exist, apply the **highest discount percentage**.
 
-Tax is calculated after discounts.
+---
 
-Invoice Requirements
+# Taxes
 
-Each invoice must contain:
+Tax rules depend on the customer's country.
 
-Customer name
-Plan name
-Base plan charge
-Extra user charge
-Discount amount
-Tax amount
-Final payable amount
-Example Scenarios
-Scenario 1
+| Country | Tax Rate |
+|----------|----------|
+| USA | 8% |
+| UK | 20% |
+| Germany | 19% |
+| Others | 0% |
 
-Customer:
+### Tax Rule
+Tax is calculated **after discounts** are applied.
 
-Name: Alice Inc.
-Country: USA
-Plan: Basic
-Active Users: 5
-Discounts: Startup
+---
 
-Calculation:
+# Invoice Requirements
 
+Each generated invoice must contain:
+
+- Customer Name
+- Plan Name
+- Base Plan Charge
+- Extra User Charge
+- Discount Amount
+- Tax Amount
+- Final Payable Amount
+
+---
+
+# Example Scenarios
+
+## Scenario 1
+
+### Customer Information
+
+| Field | Value |
+|---------|---------|
+| Name | Alice Inc. |
+| Country | USA |
+| Plan | Basic |
+| Active Users | 5 |
+| Discounts | Startup |
+
+### Calculation
+
+```text
 Basic Fee = 20
 
-Extra Users = 5−3 = 2
+Extra Users = 5 - 3 = 2
 
 Extra Charge = 2 × 8 = 16
 
-Subtotal = 36
+Subtotal = 20 + 16 = 36
 
-Discount = 15% = 5.40
+Discount = 15% of 36 = 5.40
 
-After Discount = 30.60
+Amount After Discount = 36 - 5.40 = 30.60
 
-Tax = 8% = 2.448
+Tax = 8% of 30.60 = 2.448
 
-Final = 33.048
+Final Amount = 30.60 + 2.448 = 33.048
 
 Invoice Total = $33.05
+```
 
-Scenario 2
+---
 
-Customer:
+## Scenario 2
 
-Name: Helping Hands
-Country: UK
-Plan: Professional
-Active Users: 8
-Discounts: Nonprofit
+### Customer Information
 
+| Field | Value |
+|---------|---------|
+| Name | Helping Hands |
+| Country | UK |
+| Plan | Professional |
+| Active Users | 8 |
+| Discounts | Nonprofit |
+
+### Final Result
+
+```text
 Final Amount = $48.00
+```
 
-Scenario 3
+---
 
-Customer:
+## Scenario 3
 
-Name: Mega Corp
-Country: Germany
-Plan: Enterprise
-Users: 35
-No Discounts
+### Customer Information
 
+| Field | Value |
+|---------|---------|
+| Name | Mega Corp |
+| Country | Germany |
+| Plan | Enterprise |
+| Active Users | 35 |
+| Discounts | None |
+
+### Final Result
+
+```text
 Final Amount = $178.50
+```
 
-Requirements Analysis
-Entities
-Customer
-Subscription Plan
-Discount Policy
-Tax Calculator
-Invoice
-Billing Service
-OOP Concepts Expected
-Encapsulation
-Abstraction
-Polymorphism
-Composition
+---
+
+# Requirements Analysis
+
+## Core Entities
+
+### 1. Customer
+Responsible for storing customer information:
+
+- Name
+- Country
+- Active Users
+- Subscription Plan
+- Available Discounts
+
+### 2. Subscription Plan
+Responsible for plan configuration:
+
+- Plan Name
+- Monthly Fee
+- Included Users
+- Extra User Cost
+
+### 3. Discount Policy
+Responsible for discount calculation:
+
+- Startup Discount
+- Nonprofit Discount
+- Future Discount Types
+
+### 4. Tax Calculator
+Responsible for tax calculation based on country.
+
+### 5. Invoice
+Responsible for storing billing results:
+
+- Customer Name
+- Plan Name
+- Base Charge
+- Extra User Charge
+- Discount Amount
+- Tax Amount
+- Final Amount
+
+### 6. Billing Service
+Responsible for:
+
+- Generating invoices
+- Applying discounts
+- Applying taxes
+- Coordinating all billing operations
+
+---
+
+# OOP Concepts Expected
+
+## Encapsulation
+Hide billing calculations and expose only necessary methods.
+
+Example:
+
+```python
+invoice.total_amount()
+```
+
+---
+
+## Abstraction
+Define common interfaces for:
+
+- Discount policies
+- Tax calculation strategies
+
+Example:
+
+```python
+class DiscountPolicy(ABC):
+    @abstractmethod
+    def calculate_discount(self, amount):
+        pass
+```
+
+---
+
+## Polymorphism
+Allow different discount implementations to behave through the same interface.
+
+Example:
+
+```python
+StartupDiscount
+NonprofitDiscount
+```
+
+Both should implement:
+
+```python
+calculate_discount()
+```
+
+---
+
+## Composition
+
+A `BillingService` should be composed of:
+
+```text
+BillingService
+ ├── Customer
+ ├── SubscriptionPlan
+ ├── DiscountPolicy
+ ├── TaxCalculator
+ └── Invoice
+```
+
+This ensures low coupling and high maintainability.
+
+---
+
+# Future Extensibility Goals
+
+The design should allow easy addition of:
+
+- New subscription plans
+- New discount policies
+- New tax rules
+- Promotional campaigns
+- Country-specific billing requirements
+
+Without modifying existing core business logic (**Open/Closed Principle**).
+
+---
+
+# Expected Deliverables
+
+1. Design the system using OOP principles.
+2. Create appropriate classes and relationships.
+3. Generate invoices for customers.
+4. Support future extensibility.
+5. Write clean, maintainable, and testable code.
+6. Follow SOLID design principles where appropriate.
